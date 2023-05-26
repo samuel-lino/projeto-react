@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
-
+import {useState} from 'react'
+import './style.css'
+import login from './dados.json'
 function App() {
+  const [user, setuser] = useState('')
+  const [pass, setpass] = useState('')
+  const logins = login
+  class count {
+    constructor(username, password) {
+      this.username = username;
+      this.password = password;
+    }
+  }
+  function logar(){
+    console.log(logins)
+    if(user !== ''){
+      if(pass !== ''){
+          let logando = false;
+          for (const obje of logins) {
+            if (obje.username === user) {
+              if (obje.password === pass){
+                alert('Olá ' + user + ', seja bem vindo!')
+                logando = true;
+                return;
+              };
+            };
+          };
+          if (logando === false) {
+            console.log('senha ou nome de usuario estão incorretos ou você não possui cadastro clique em criar conta para criala');
+          };
+        };
+      } 
+    }
+    function criarconta() {
+      const u = new count(user, pass);
+      logins.push(u);
+    };
+    
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="conteiner">
+      <div className="conteinerLogin">
+          <h3>Login</h3>
+          <label form="Username">Username</label>
+          <input id="Username" placeholder="username" value={user} onChange={(e) => setuser(e.target.value)}/>
+          <label form='password'>Password</label>
+          <input id="Password" placeholder="password" value={pass} onChange={(e) => setpass(e.target.value)}/>
+          <button id="login" onClick={logar}>login</button>
+          <button id="CreatCount" onClick={criarconta}>creat count</button>
+      </div>
     </div>
-  );
-}
+)}
 
 export default App;
