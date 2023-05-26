@@ -26,14 +26,19 @@ function App() {
             };
           };
           if (logando === false) {
-            console.log('senha ou nome de usuario estão incorretos ou você não possui cadastro clique em criar conta para criala');
+            alert('senha ou nome de usuario estão incorretos ou você não possui cadastro clique em criar conta para criala');
           };
         };
       } 
     }
     function criarconta() {
-      const u = new count(user, pass);
-      logins.push(u);
+      if(user !== ''){
+        if(pass !== ''){
+          const u = new count(user, pass);
+          logins.push(u);
+        }
+      }
+      
     };
     
   return (
