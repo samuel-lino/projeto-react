@@ -34,9 +34,26 @@ function App() {
     function criarconta() {
       if(user !== ''){
         if(pass !== ''){
-          const u = new count(user, pass);
-          logins.push(u);
-        }
+          let existe = false
+          for(var obje of logins){
+            if(obje.username === user){
+              existe = true
+            }
+          }
+          if(existe === false){
+            const u = new count(user, pass);
+            //coloquei esta parte para não ficar aparecendo count na frente do objeto
+            //sem ele aparecia assim count{username:'valor', password:'valor'}
+            //também tentei fazer com que salva-se no arquivo dados.json, mas não consegui, olhei alguns videos sobre, mas precisava criar um servidor backend, e não entendi como fazelo por isso dexei assim mesmo.
+            const s = {username: u.username, password: u.password}
+            logins.push(s);
+          }
+          else{
+            alert('Este nome de usuario ja existe porfavor escolha outro.')
+          }
+           
+          }
+          
       }
       
     };
